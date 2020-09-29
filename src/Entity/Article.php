@@ -32,6 +32,14 @@ class Article
      */
     private $date;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="\App\Entity\User", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
