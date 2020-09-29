@@ -53,13 +53,33 @@ class ArticleController extends AbstractController
 
     /**
      * @Route ("/formulaire")
+     * @param Request $request
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     * @throws \Doctrine\ORM\ORMException
      */
-    public function form() {
+    public function form(Request $request) {
 
-        $form = $this->createForm(ArticleForm::class);
+        $article = new Article("", "", new \DateTime());
+        $form = $this->createForm(ArticleForm::class, $article);
+
+        // hydrate le formulaire avec les données en post
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($article);
+            $this->entityManager->flush($article);
+            dump($article);
+        }
+
+
         $display = $this->twig->render('home/articles.html.twig', [
             'articles' => $form->createView()
         ]);
+
         return new Response($display);
 
     }

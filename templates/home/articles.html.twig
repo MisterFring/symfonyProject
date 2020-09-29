@@ -7,7 +7,10 @@
 
 <h1>Article</h1>
 <ul>
-    {{ form(articles) }}
+    {{ form_start(articles) }}
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    {{ form_end(articles) }}
 
     {#{% for article in articles %}
         <li>
