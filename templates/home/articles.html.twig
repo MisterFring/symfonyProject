@@ -4,21 +4,16 @@
     <meta charset="utf-8">
 </head>
 <body>
+
+<h1>Article</h1>
 <ul>
-    {% for article in articles %}
-        <li>{{ article.titre }} - {{ article.contenu }} -
-            {% if article.etoiles >= 4 %}
-                Les meilleurs
-            {% elseif article.etoiles == 2 or article.etoiles == 3 %}
-                Les pas trop mal
-            {% else %}
-                Non recommandés
-            {% endif %}
-                - {{ loop.index }} - 
-                <img src="{{ article.image }}">
+    {{ form(articles) }}
+
+    {#{% for article in articles %}
+        <li>
+            {{ article.title }} - {{ article.content }}
         </li>
-    {% endfor %}
-        {{ test }}
+    {% endfor %}#}
 </ul>
 
 

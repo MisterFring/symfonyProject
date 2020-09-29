@@ -28,7 +28,7 @@ class Article
     private $content;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -39,6 +39,22 @@ class Article
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $user;
+
+    /**
+     * Article constructor.
+     * @param $title
+     * @param $content
+     * @param $date
+     * @param User|null $user
+     */
+    public function __construct($title, $content, $date, ?User $user = null)
+    {
+        $this->title = $title;
+        $this->content = $content;
+        $this->date = $date;
+        $this->user = $user;
+    }
+
 
     public function getId(): ?int
     {
